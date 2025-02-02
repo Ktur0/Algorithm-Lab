@@ -1,0 +1,15 @@
+def sequential_search(arr, x):
+    for i in range(len(arr)):
+        if arr[i] == x:
+            return i  # Trả về vị trí nếu tìm thấy
+    return -1  # Không tìm thấy
+
+# Ví dụ sử dụng:
+arr = [10, 20, 30, 40, 50]
+x = 30
+result = sequential_search(arr, x)
+
+if result != -1:
+    print(f"Phần tử {x} được tìm thấy tại vị trí {result}")
+else:
+    print(f"Phần tử {x} không tồn tại trong danh sách")

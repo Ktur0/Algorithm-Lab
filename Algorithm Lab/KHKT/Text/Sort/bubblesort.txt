@@ -1,0 +1,31 @@
+def bubble_sort(arr):
+    """
+    Hàm thực hiện thuật toán Bubble Sort để sắp xếp mảng.
+    :param arr: Mảng cần sắp xếp
+    :return: Mảng đã được sắp xếp
+    """
+    n = len(arr)
+    for i in range(n):
+        # Cờ để kiểm tra nếu không còn hoán đổi
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                # Hoán đổi nếu phần tử trước lớn hơn phần tử sau
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+
+        # Nếu không có phần tử nào được hoán đổi, dừng sớm
+        if not swapped:
+            break
+
+
+# Hàm kiểm tra nhanh
+if __name__ == "__main__":
+    print("Bubble Sort - Ví dụ hoạt động\n")
+
+    # Mảng mẫu
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    print("Mảng ban đầu:", arr)
+
+    bubble_sort(arr)
+    print("Mảng sau khi sắp xếp:", arr)
