@@ -1,0 +1,19 @@
+def insertion_sort(arr):
+    # Lặp qua từng phần tử trong danh sách (bắt đầu từ phần tử thứ 2)
+    for i in range(1, len(arr)):
+        key = arr[i]  # Lấy phần tử hiện tại
+        j = i - 1
+        
+        # Di chuyển các phần tử lớn hơn key về sau
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        
+        # Chèn key vào đúng vị trí
+        arr[j + 1] = key
+
+# Ví dụ sử dụng:
+arr = [12, 11, 13, 5, 6]
+print("Trước khi sắp xếp:", arr)
+insertion_sort(arr)
+print("Sau khi sắp xếp:", arr)

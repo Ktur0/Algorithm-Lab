@@ -1,0 +1,30 @@
+import math
+
+def jump_search(arr, x):
+    n = len(arr)
+    step = int(math.sqrt(n))  # Kích thước bước nhảy
+    prev = 0
+
+    # Nhảy qua từng bước cho đến khi tìm được khoảng chứa giá trị cần tìm
+    while prev < n and arr[min(step, n) - 1] < x:
+        prev = step
+        step += int(math.sqrt(n))
+        if prev >= n:
+            return -1  # Không tìm thấy
+
+    # Tìm kiếm tuyến tính trong khoảng [prev, step]
+    for i in range(prev, min(step, n)):
+        if arr[i] == x:
+            return i
+
+    return -1  # Không tìm thấy
+
+# Ví dụ sử dụng:
+arr = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+x = 11
+result = jump_search(arr, x)
+
+if result != -1:
+    print(f"Phần tử {x} được tìm thấy tại vị trí {result}")
+else:
+    print(f"Phần tử {x} không tồn tại trong danh sách")
