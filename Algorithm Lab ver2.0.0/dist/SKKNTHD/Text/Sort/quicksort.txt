@@ -1,0 +1,43 @@
+def partition(arr, low, high):
+    """
+    Hàm phân đoạn mảng dựa trên phần tử pivot.
+    :param arr: Mảng cần phân đoạn
+    :param low: Chỉ số bắt đầu
+    :param high: Chỉ số kết thúc
+    :return: Chỉ số của pivot sau khi phân đoạn
+    """
+    pivot = arr[high]  # Chọn pivot là phần tử cuối cùng
+    i = low - 1  # Chỉ số của phần tử nhỏ hơn pivot
+
+    for j in range(low, high):
+        if arr[j] < pivot:  # Nếu phần tử nhỏ hơn pivot
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]  # Hoán đổi phần tử nhỏ hơn với vị trí đúng
+
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]  # Đặt pivot vào đúng vị trí
+    return i + 1
+
+
+def quicksort(arr, low, high):
+    """
+    Hàm chính thực hiện QuickSort bằng cách phân đoạn và đệ quy.
+    :param arr: Mảng cần sắp xếp
+    :param low: Chỉ số bắt đầu
+    :param high: Chỉ số kết thúc
+    """
+    if low < high:
+        pi = partition(arr, low, high)  # Phân đoạn và lấy vị trí pivot
+        quicksort(arr, low, pi - 1)  # Sắp xếp phần bên trái pivot
+        quicksort(arr, pi + 1, high)  # Sắp xếp phần bên phải pivot
+
+
+# Hàm kiểm tra nhanh
+if __name__ == "__main__":
+    print("QuickSort In-Place - Ví dụ hoạt động\n")
+
+    # Nhập mảng từ người dùng hoặc dùng mảng mẫu
+    arr = [10, 7, 8, 9, 1, 5]
+    print("Mảng ban đầu:", arr)
+
+    quicksort(arr, 0, len(arr) - 1)
+    print("Mảng sau khi sắp xếp:", arr)

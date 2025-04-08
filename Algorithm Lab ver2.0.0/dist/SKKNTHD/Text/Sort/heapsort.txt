@@ -1,0 +1,43 @@
+def heapify(arr, n, i):
+    """
+    Hàm đảm bảo tính chất Max-Heap cho cây có root tại chỉ số i.
+    n: kích thước của heap
+    i: chỉ số của node gốc
+    """
+    largest = i  # Khởi tạo largest là root
+    left = 2 * i + 1  # Chỉ số node con trái
+    right = 2 * i + 2  # Chỉ số node con phải
+
+    # Nếu node con trái lớn hơn root
+    if left < n and arr[left] > arr[largest]:
+        largest = left
+
+    # Nếu node con phải lớn hơn largest
+    if right < n and arr[right] > arr[largest]:
+        largest = right
+
+    # Nếu largest không phải root, hoán đổi và heapify lại
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        # Gọi đệ quy để đảm bảo Max-Heap với node con
+        heapify(arr, n, largest)
+
+def heap_sort(arr):
+    n = len(arr)
+
+    # Xây dựng Max-Heap
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+
+    # Trích xuất từng phần tử từ Heap
+    for i in range(n - 1, 0, -1):
+        # Đưa phần tử lớn nhất (root) về cuối mảng
+        arr[i], arr[0] = arr[0], arr[i]
+        # Giảm kích thước heap và heapify lại
+        heapify(arr, i, 0)
+
+# Ví dụ sử dụng:
+arr = [4, 10, 3, 5, 1]
+print("Trước khi sắp xếp:", arr)
+heap_sort(arr)
+print("Sau khi sắp xếp:", arr)
